@@ -1,0 +1,284 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="loadb()">
+    <div class="container">
+        <div class="header">
+            <h2>Create Account</h2>
+        </div>
+        <form name="form_name" id="form_name" class="form">
+            <div class="form-control">
+                <b><label for="username">Username:</label></b>
+                <input onkeyup="ua()" type="text" placeholder="Demo123" id="username" />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error message</small>
+            </div>
+            <div class="form-control">
+                <b><label for="username">Email</label></b>
+                <input onkeyup="emailc()" type="email" placeholder="demo@demo.com" id="email" />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error message</small>
+            </div>
+            <div class="form-control">
+                <b><label for="username">Phone Number</label></b>
+                <input onkeyup="phonec()" type="number" placeholder="Phone Number Without +91" id="phoneNumber" />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error message</small>
+            </div>
+
+            <b><label for="username">Gender</label></b>
+            <div class="aa">
+                <input name="a" type="radio" id="male" required>
+                  <label for="male">Male</label><br>
+                <input name="a" type="radio" id="female">
+                  <label for="female">Female</label>
+
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error message</small>
+            </div>
+
+
+
+            <b><label for="username">Languages Known:</label></b>
+            <div class="aa">
+                <input type="checkbox" id="cba1" name="c1" value="c" onchange="cb()">
+                  <label for="c1">C</label>
+                <input type="checkbox" id="c2" name="c1" value="c++" onchange="cb()">
+                  <label for=" c2">C++</label>
+                <input type="checkbox" id="c3" name="c1" value="python" onchange="cb()">
+                  <label for="c3">Python</label>
+                <input type="checkbox" id="c4" name="c1" value="java" onchange="cb()">
+                  <label for="c4">Java</label>
+                <br>
+
+
+            </div>
+            <div class="ids">
+                <input type="hidden" id="ano">
+                <center> <small>Error message</small></center>
+
+            </div>
+
+
+
+
+
+
+            <div class="form-control">
+                <b> <label for="username">Address</label></b>
+                <textarea onkeyup="addr()" name="address" rows="5" placeholder="Type Your Address"
+                    id="address"></textarea>
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error message</small>
+            </div>
+            <div class="form-control">
+                <b><label for="username">Designation</label><br></b>
+                <select name="designation" id="designation" >
+                    <option value="student">Student</option>
+                    <option value="Faculty">Faculty</option>
+                    <option value="Employee">Employee</option>
+
+                </select>
+               
+            </div>
+            <div class="aa">
+                <b> <label for="username">Skills</label><br></b>
+                <select class="msel" name="designation" id="designation" multiple>
+                    <option value="student">Student</option>
+                    <option value="Faculty">Faculty</option>
+                    <option value="Employee">Employee</option>
+
+                </select>
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error message</small>
+            </div>
+            <input type="submit" id="btns">
+        </form>
+    </div>
+    <script>
+        function loadb() {
+            document.getElementById("btns").DISABLED= true;
+
+        }
+
+        const form = document.getElementById("form_name");
+        
+            var unaa = document.getElementById("username");
+            var email = document.getElementById("email");
+            var phone = document.getElementById("phoneNumber");
+            var address = document.getElementById("address");
+            form.addEventListener("submit", (e) => {
+            e.preventDefault();
+        
+            checkInputs();
+        });
+        function checkInputs() {
+            const usernameValue = unaa.value.trim();
+            const emailValue = email.value.trim();
+            const phonenn = phone.value.trim();
+            const adre = address.value.trim();
+            if (usernameValue === "") {
+                setErrorFor(unaa, "Username cannot be blank");
+            }
+            if (emailValue === "") {
+                setErrorFor(email, "Email cannot be blank");
+            }
+            if (phonenn === "") {
+                setErrorFor(phone, "Phone Number cannot be blank");
+            }
+           if(adre === ""){
+                setErrorFor(address, "Address cannot be blank");
+            }
+            else{
+            document.getElementById("btns").style.display="relative";
+
+            }
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        function ua() {
+            var uname = document.getElementById("username").value;
+            var unaa = document.getElementById("username");
+
+            let regex = /^[a-zA-Z]{5,9}$/;
+            var a = regex.test(uname);
+            if (a == false) {
+                setErrorFor(unaa, "Username Must Be 5-10 Characters");
+            }
+            else if (a == true) {
+                setSuccessFor(unaa, "Username Valid");
+            }
+        }
+        function emailc() {
+            let result = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            var ema = document.getElementById("email").value;
+            var email = document.getElementById("email");
+            var b = result.test(ema);
+
+            if (b == false) {
+                setErrorFor(email, "Not a valid email");
+            } else {
+                setSuccessFor(email, "Email Valid");
+
+
+            }
+        }
+        function phonec() {
+            var phonea = document.getElementById("phoneNumber").value;
+            var phone = document.getElementById("phoneNumber");
+
+
+            if (phonea.length == 10) {
+                setSuccessFor(phone, "Phone Number Valid");
+            }
+            else {
+                setErrorFor(phone, "Phone Number Invalid");
+            }
+        }
+        function cb() {
+            var checkBoxGroup = document.forms['form_name']['c1'];
+            var che = document.getElementById('ano');
+
+            var limit = 2;
+            for (var i = 0; i < checkBoxGroup.length; i++) {
+                checkBoxGroup[i].onclick = function () {
+                    var checkedcount = 0;
+                    for (var i = 0; i < checkBoxGroup.length; i++) {
+                        checkedcount += (checkBoxGroup[i].checked) ? 1 : 0;
+                    }
+                    if (checkedcount >= limit) {
+                        setSuccessFor(che, "Successfully Selected");
+                    }
+                    else if (checkedcount < 1) {
+                        setErrorFor(che, "Minimum 2 need to be Selected");
+
+                    }
+                }
+            }
+        }
+        function addr() {
+            var address = document.getElementById("address");
+            var addressv = document.getElementById("address").value;
+            let r = /^[a-zA-Z0-9]{50,150}$/;
+            var re = r.test(addressv);
+            if (re == true) {
+                setSuccessFor(address, "Address Format Correct");
+            }
+            else {
+                setErrorFor(address, "Address Format Invalid");
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+        function setErrorFor(input, message) {
+            const formControl = input.parentElement;
+            const small = formControl.querySelector("small");
+            formControl.className = "form-control error";
+            small.innerText = message;
+        }
+
+        function setSuccessFor(input, message) {
+
+            const formControl = input.parentElement;
+            const small = formControl.querySelector("small");
+
+            formControl.className = "form-control success";
+
+            small.innerText = message;
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
